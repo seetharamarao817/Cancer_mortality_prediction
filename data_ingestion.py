@@ -8,6 +8,6 @@ class DataIngestion:
     def load_data(self,filepath:str) -> pd.DataFrame:
         self.filepath = filepath
 
-        df = pd.read_csv(self.filepath)
+        df = pd.read_csv(self.filepath,encoding='latin-1')
 
         return df

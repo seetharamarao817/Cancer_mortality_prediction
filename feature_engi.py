@@ -1,5 +1,5 @@
 from sklearn.preprocessing import OneHotEncoder
-
+import pandas as pd
 
 def bin_to_num(data):
     binnedinc = []
@@ -31,8 +31,8 @@ def bin_to_num(data):
 
 def cal_col(data):
 
-    data['county'] = [i.split(',')[0] for i in data["Geography"]]
-    data['state'] = [i.split(',')[1] for i in data["Geography"]]
+    data['county'] = [i.split(', ')[0] for i in data["Geography"]]
+    data['state'] = [i.split(', ')[1] for i in data["Geography"]]
 
     data = data.drop("Geography",axis=1)
     return data 
@@ -42,12 +42,12 @@ def one_hot_enc(data):
     
     one_hot = OneHotEncoder(sparse =False,handle_unknown ='ignore')
 
-    one_hot_enc = one_hot.fit_transform(data[cal_cols])
+    one_hot_enc = one_hot.fit_transform(data[cat_cols])
 
     one_hot_enc = pd.DataFrame(
-        one_hot_enc,coloumns=one_hot.get_feature_names_out(cal_cols)
+        one_hot_enc,columns=one_hot.get_feature_names_out(cat_cols)
 
-    )
+     )
     data = data.drop(cat_cols,axis=1)
     data = pd.concat([data,one_hot_enc],axis=1)
 
