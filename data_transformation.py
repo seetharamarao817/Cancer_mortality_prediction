@@ -4,6 +4,8 @@ from feature_engi import cal_col
 from feature_engi import one_hot_enc
 from data_cleaning import (del_dupli_rows,drop_nd_fill_na)
 
+
+
 di = DataIngestion()
 df = di.load_data("/workspaces/Cancer_prediction/data/cancer_reg.csv")
 
